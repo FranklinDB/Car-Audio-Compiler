@@ -1,0 +1,164 @@
+#parameters of the user's vehicle
+
+def main():
+    intro()
+
+    get_vehicle_info()
+
+    get_listening_preferences()
+
+    build_system()
+
+def intro():
+    print('Welcome to the Car Audio Configurator')
+    print('The purpose of this program is to assist you with car audio component selection')
+    print('The program will ask you various questions to create the best lists of parts possible')
+
+def get_vehicle_info():
+    vehicle_type = input('What Body Style is your vehicle (Sedan, Crossover, SUV, Truck): ').lower()
+    vehicle_options = ['sedan', 'crossover', 'suv', 'truck']
+    while vehicle_type not in vehicle_options:
+        print('there was an error entering your vehicle type please try again')
+        vehicle_type = input('What Body Style is your vehicle (Sedan, Crossover, SUV, Truck): ').lower()
+    if vehicle_type == 'truck':
+        print("This feature is still under development")
+    system_parameters['body style'] = vehicle_type
+
+def get_listening_preferences():
+    box_info = input('Would you like help choosing your subwoofer enclosure type? (Enter "yes" or "no"): ')
+    if box_info == 'yes':
+        print()
+        print('To create the best possible system it is important to choose a subwoofer enclosure to match what music you listen to')
+        print()
+        print('Ported Enclosures are more efficient and tend to be more boomy ')
+        print('This makes them a great choice for bass heavy or music such as rap or EDM')
+        print()
+        print('Sealed boxes however are less efficent,  but are more musically accurate as well as more punchy')
+        print('Their "punchy" nature is more effective for reproducting bass such as kick drums found in country or rock')
+        print()
+        ask_box_type = input('Type "sealed" or "ported" to select your enclosure type: ')
+        bass_parameters['box type'] = ask_box_type
+    else:
+        ask_box_type = input('Type "sealed" or "ported" to select your enclosure type: ')
+        bass_parameters['box type'] = ask_box_type
+    print('How much bass are you looking for')
+    print('Enter 1 for a little more than my factory system')
+    print('Enter 2 for I want to hear the bass in every song')
+    print('Enter 3 for I want to feel it in my chest')
+    ask_bass_amount = input()
+    bass_parameters['bass amount'] = ask_bass_amount
+    print('How important is sound quality to you')
+    print('Type 1 for: Sound Quality is my first priority over output and bass')
+    print('Type 2 for: I like a good balance of sound quality and output')
+    print('Type 3 for: I prioritze bass and output over sound quality')
+    ask_sound_quality = input('Select An Option:')
+    listening_preferences['sound quality'] == ask_sound_quality
+
+def build_system():
+    if system_parameters['body style'] == 'sedan':
+        build_sedan()
+    elif system_parameters['body style'] == 'crossover':
+        build_crossover()
+    elif system_parameters['body style'] == 'suv':
+        build_suv()
+
+def build_sedan():
+    print('On a scale from 1-3 how much trunk space are you willing to allocate to your subwoofer package')
+    available_space = int(input('1 being minimal space for a subwoofer 3 being I prioritze bass over space: '))
+    system_parameters['space'] == available_space
+    if system_parameters['space'] == 1 or 2:
+        choose_subwoofer_10()
+    elif system_parameters['space'] == 3:
+        choose_subwoofer_12()
+def build_crossover():
+    print('On a scale from 1-3 how much trunk space are you willing to allocate to your subwoofer package')
+    available_space = int(input('1 being minimal space for a subwoofer 3 being I prioritze bass over space: '))
+    system_parameters['space'] == available_space
+    if system_parameters['space'] == 1 or 2:
+        choose_subwoofer_10()
+    elif system_parameters['space'] == 3:
+        choose_subwoofer_12()
+def build_suv():
+    print('On a scale from 1-3 how much trunk space are you willing to allocate to your subwoofer package')
+    available_space = int(input('1 being minimal space for a subwoofer 3 being I prioritze bass over space: '))
+    system_parameters['space'] == available_space
+    if system_parameters['space'] == 1 or 2:
+        choose_subwoofer_10()
+    elif system_parameters['space'] == 3:
+        choose_subwoofer_12()
+def choose_subwoofer_10():
+    if bass_parameters['box type'] == 'ported':
+        if bass_parameters['bass amount'] == "1":
+            if listening_preferences['sound quality'] == '1':
+                print('Kicker 43TC104')
+            elif listening_preferences['sound quality'] == '2':
+                print('JL Audio CP110-W0v3')
+            elif listening_preferences['sound quality'] == '3':
+                print('JL Audio HO110RG-W3v3')
+        elif bass_parameters['bass amount'] == '2':
+            if listening_preferences['sound quality'] == '1':
+                print('Kicker 50TCWC102')
+            elif listening_preferences['sound quality'] == '2':
+                print('JL Audio CP210-W0v3')
+            elif listening_preferences['sound quality'] == '3':
+                print('JL Audio HO110-W6v3')
+        elif bass_parameters['bass amount'] == '3':
+            if listening_preferences['sound quality'] == '1':
+                print('Kicker 44TL7S102')
+            elif listening_preferences['sound quality'] == '2':
+                print('JL Audio CP210-W0v3')
+            elif listening_preferences['sound quality'] == '3':
+                print('JL Audio HO110-W6v3')
+    elif bass_parameters['box type'] == 'sealed':
+        if bass_parameters['bass amount'] == '1':
+            print('Kicker 48CDF104')
+        elif bass_parameters['bass amount'] == '2':
+            print('Kicker 52CVTDF102')
+        elif bass_parameters['bass amount'] == '3':
+            print('Kicker 49L7TDF102')
+                
+def choose_subwoofer_12():
+    if bass_parameters['box type'] == 'ported':
+        if bass_parameters['bass amount'] == '1':
+            if listening_preferences['sound quality'] == '1':
+                print('Kicker CompC 50VCWC122')
+            elif listening_preferences['sound quality'] == '2':
+                print('Alpine S2-SB12V')
+            elif listening_preferences['sound quality'] == '3':
+                print('JL Audio HO112RG-W3v3')
+        elif bass_parameters['bass amount'] == '2':
+            if listening_preferences['sound quality'] == '1':
+                print('Kicker 48VCWR122')
+            elif listening_preferences['sound quality'] == '2':
+                print('Alpine S2-SB12V')
+            elif listening_preferences['sound quality'] == '3':
+                print('JL Audio HO112-W6v3')
+        elif bass_parameters['bass amount'] == '3':
+            if listening_preferences['sound quality'] == '1':
+                print('Kicker 48DCWR122')
+            elif listening_preferences['sound quality'] == '2':
+                print('Kicker 44DL7S122')
+            elif listening_preferences['sound quality'] == '3':
+                print('JL Audio HO112R-W7AE')
+    elif bass_parameters['box type'] == 'sealed':
+        if bass_parameters['bass amount'] == '1':
+            print('Kicker 48CDF124')
+        elif bass_parameters['bass amount'] == '2':
+            print('Kicker 49L7TDF122')
+        elif bass_parameters['bass amount'] == '3':
+            print('JL Audio CLS112RG-W7AE')
+system_parameters = {
+    'body style': '',
+    'budget': '',
+    'space': ''
+    }
+bass_parameters = {
+    'box type': '',
+    'bass amount': ''
+    }
+
+listening_preferences = {
+    'sound quality': '',
+}
+
+main()
